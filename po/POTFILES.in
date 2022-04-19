@@ -2427,3 +2427,4 @@ actions/quote.l.scm
 actions/silex.scm
 actions/Simple.scm
 org.denemo.Denemo.appdata.xml.in
+org.denemo.Denemo.desktop.in

@@ -1,8 +1,3 @@
-@INTLTOOL_XML_RULE@
-appdatadir = $(datarootdir)/appdata
-appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-appdata_in_files = org.denemo.Denemo.appdata.xml.in
-
 SUBDIRS = \
   tools \
   libs/libsffile \
@@ -24,15 +19,12 @@ EXTRA_DIST = \
   examples \
   @PACKAGE@.spec.in \
   @PACKAGE@.spec \
-  $(INTLTOOL_FILES) \
   docs/DESIGN \
   docs/GOALS \
   docs/DESIGN.lilypond \
-  intltool-extract.in \
-  intltool-merge.in \
-  intltool-update.in \
   po/$(GETTEXT_PACKAGE).pot \
-  org.denemo.Denemo.appdata.xml.in
+  org.denemo.Denemo.appdata.xml.in \
+  org.denemo.Denemo.desktop.in
 
 MAINTAINERCLEANFILES = \
   Makefile.in \
@@ -48,23 +40,22 @@ MAINTAINERCLEANFILES = \
   acinclude.m4 \
   config.log \
   depcomp \
-  intltool-extract \
-  intltool-merge \
-  intltool-update \
-  po/.intltool-merge-cache \
   $(GETTEXT_PACKAGE)-$(VERSION).pot
 
 DISTCLEANFILES = \
-  intltool-extract \
-  intltool-merge \
-  intltool-update \
-  po/.intltool-merge-cache \
   po/denemo.pot
 
 CLEANFILES = \
-  $(appdata_DATA)
+  org.denemo.Denemo.appdata.xml \
+  org.denemo.Denemo.desktop
 
 ACLOCAL_AMFLAGS = -I build
+
+org.denemo.Denemo.desktop: org.denemo.Denemo.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
+org.denemo.Denemo.appdata.xml: org.denemo.Denemo.appdata.xml.in
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 install-data-hook:
 	cp -r $(srcdir)/actions ${DESTDIR}/$(datadir)/${PACKAGE}/

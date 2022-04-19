@@ -1,0 +1,12 @@
+[Desktop Entry]
+Exec=denemo %F
+Icon=org.denemo.Denemo
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Audio;AudioVideo;Music;Education;
+MimeType=audio/midi;application/denemo;
+Name=GNU Denemo
+GenericName=Score Editor
+Comment=Edit musical scores
+Keywords=music;notation;compose;transcribe;
